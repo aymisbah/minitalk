@@ -38,19 +38,21 @@ void send_bit(int pid, int bit)
         kill(pid, SIGUSR2);
     else
         kill(pid, SIGUSR1);
-    usleep(10000);
+    usleep(17300);
 }
 
 void send_msg(int pid, const char *msg)
 {
-    int i = 0;
+    int i;
     int bit;
+    unsigned char c;
+    int j;
     
+    i = 0;
     while (msg[i])
     {
-        unsigned char c = msg[i];
-        int j = 7;
-        
+        c = msg[i];
+        j = 7;
         while (j >= 0)
         {
             bit = (c >> j) & 1;
@@ -68,7 +70,21 @@ int main(int ac, char **av)
         write(2, "Usage: ./client <PID> <message>\n", 31);
         return 1;
     }
-
+    int i = 0;
+    while (av[1][i])
+    {
+        if (av[1][i] == ' ' || av[1][i] == '\t')
+        {
+            write(2,"provid a valid pid\n",21);
+            return (0);
+        }
+        i++;  
+    }
+    if (ft_atoi(av[1]) <= 0 || ft_atoi(av[1]) > 4194304)
+    {
+        write(2,"provid a valid pid\n",21);
+            return (0);
+    }
     int pid = ft_atoi(av[1]);
     const char *msg = av[2];
     send_msg(pid, msg);
