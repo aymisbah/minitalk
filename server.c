@@ -10,9 +10,9 @@
 
 void signal_handler(int sig, siginfo_t *siginfo, void *more_info)
 {
-    static int        i;
-    static char        c;
-    static pid_t    pid;
+    int        i;
+    char        c;
+    pid_t    pid;
 
     (void)more_info;
     if (siginfo->si_pid != pid)
@@ -30,6 +30,8 @@ void signal_handler(int sig, siginfo_t *siginfo, void *more_info)
         i = 7;
         c = 0;
     }
+    usleep(500);
+    kill(siginfo->si_pid, SIGUSR1);
 }
 
 int main() 
