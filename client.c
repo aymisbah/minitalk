@@ -59,6 +59,7 @@ int	check_valid(char *str)
 		}
 		i++;
 	}
+	return (i);
 }
 
 int	main(int ac, char **av)

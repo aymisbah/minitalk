@@ -19,7 +19,7 @@ GFLAGS = -Wall -Wextra -Werror
 all: ${NAME} ${NAME_B}
 
 %.o: %.c minitalk.h 
-	${CC}  -c $< -o $@ 
+	${CC} ${CFLAGS} -c $< -o $@ 
 
 ${NAME}: ${OBJ}
 	${CC} ${OBJ} -o ${NAME}
