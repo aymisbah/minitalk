@@ -20,11 +20,12 @@
 # include <sys/types.h>
 # include <stdarg.h>
 
-typedef struct s_signal_state {
-    int i;
-    char c;
-    pid_t pid;
-} t_signal_state;
+typedef struct s_signal_state
+{
+	int		i;
+	char	c;
+	pid_t	pid;
+}	t_signal_state;
 
 int		ft_atoi(const char *str);
 int		ft_strlen(const char *s);
