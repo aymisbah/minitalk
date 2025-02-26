@@ -12,30 +12,28 @@
 
 #include "minitalk.h"
 
-void	signal_handler(int sig, siginfo_t *siginfo, void *more_info)
-{
-	pid_t	pid;
-	int		i;
-	char	c;
+t_signal_state g_state; 
 
-	(void)more_info;
-	if (siginfo->si_pid != pid)
-	{
-		pid = siginfo->si_pid;
-		i = 7;
-		c = 0;
-	}
-	if (sig == SIGUSR1)
-		c += 1 << i;
-	i--;
-	if (i == -1)
-	{
-		write(1, &c, 1);
-		i = 7;
-		c = 0;
-	}
-	usleep(500);
-	kill(siginfo->si_pid, SIGUSR1);
+void signal_handler(int sig, siginfo_t *siginfo, void *more_info)
+{
+    (void)more_info;
+
+    if (siginfo->si_pid != g_state.pid) 
+    {
+        g_state.pid = siginfo->si_pid;
+        g_state.i = 7;
+        g_state.c = 0;  
+    }
+    if (sig == SIGUSR1)
+		g_state.c += 1 << g_state.i;
+    g_state.i--;
+    if (g_state.i == -1) {
+        write(1, &g_state.c, 1);
+        g_state.i = 7;
+        g_state.c = 0;
+    }
+    usleep(500);
+    kill(siginfo->si_pid, SIGUSR1);
 }
 
 int	main(void)
