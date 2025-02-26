@@ -1,16 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aymisbah <aymisbah@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/25 15:09:26 by aymisbah          #+#    #+#             */
+/*   Updated: 2025/02/25 17:21:27 by aymisbah         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINITALK_H
 # define MINITALK_H
 
-# include <stdio.h>
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/types.h>
+# include <stdarg.h>
 
 int		ft_atoi(const char *str);
 int		ft_strlen(const char *s);
 int		isnmb(char c);
+int		ft_putnbr(int n);
+int		ft_putchar(int c);
+int		ft_printf(const char *format, ...);
 
 void	send_bit(int pid, int bit);
 void	check_sig(int sig);

@@ -1,53 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aymisbah <aymisbah@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/25 15:08:51 by aymisbah          #+#    #+#             */
-/*   Updated: 2025/02/25 15:08:52 by aymisbah         ###   ########.fr       */
+/*   Created: 2024/10/28 18:07:58 by aymisbah          #+#    #+#             */
+/*   Updated: 2025/02/25 17:21:37 by aymisbah         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-int	ft_atoi(const char *str)
+int	ft_putnbr(int n)
 {
-	int	res;
-	int	i;
-	int	sign;
-
-	res = 0;
-	i = 0;
-	sign = 1;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	return (res * sign);
-}
-
-int	ft_strlen(const char *s)
-{
-	int	i;
+	long	nb;
+	int		i;
+	int		res;
 
 	i = 0;
-	while (s[i])
+	nb = n;
+	if (nb < 0)
+	{
+		ft_putchar('-');
 		i++;
+		nb = -nb;
+	}
+	if (nb > 9)
+	{
+		res = ft_putnbr(nb / 10);
+		i += res;
+	}
+	ft_putchar((nb % 10) + '0');
+	i++;
 	return (i);
-}
-
-int	isnmb(char c)
-{
-	return (c >= '0' && c <= '9');
 }

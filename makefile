@@ -1,6 +1,6 @@
 SRC = client.c utils.c
 
-SRC_B = server.c
+SRC_B = server.c ft_printf.c ft_putnbr.c ft_putchar.c
 
 OBJ = ${SRC:.c=.o}
 
